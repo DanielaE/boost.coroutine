@@ -20,6 +20,11 @@
 #  include BOOST_ABI_PREFIX
 #endif
 
+#ifdef BOOST_MSVC
+# pragma warning(push)
+# pragma warning(disable: 4251) // struct 'boost::coroutines::stack_context' needs to have dll-interface to be used by clients
+#endif
+
 namespace boost {
 namespace coroutines {
 namespace detail {
@@ -54,6 +59,10 @@ public:
 };
 
 }}}
+
+#ifdef BOOST_MSVC
+# pragma warning(pop)
+#endif
 
 #ifdef BOOST_HAS_ABI_HEADERS
 #  include BOOST_ABI_SUFFIX
